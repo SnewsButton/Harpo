@@ -1,0 +1,14 @@
+{
+  "name": "Harpo",
+  "version": "0.0.1",
+  "description": "Tab Manager and Silencer!",
+  "permissions": ["tabs", "declarativeContent"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_popup": "./popup_files/popup.html"
+  },
+  "manifest_version": 2
+}
