@@ -1,0 +1,19 @@
+button {
+  width: 180px;
+  font-size: 1.1em;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.removeUnderline {
+  text-decoration: none;
+}
+
+.addPadding {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
