@@ -13,7 +13,7 @@ jumpAudibleTab.onclick = function(element) {
   chrome.windows.getCurrent({}, function (win) {
     currWindowId = win.id;
     bkg.console.log(currWindowId);
-    getCurrectTabId(currWindowId);
+    completeJump(currWindowId);
   });
 };
 
@@ -71,7 +71,7 @@ function alertClosedTabs(numTabs) {
   alert(numTabs + ' tab(s) have been closed.');
 };
 
-function getCurrectTabId(windowId) {
+function completeJump(windowId) {
   bkg.console.log(windowId);
   chrome.tabs.query({active: true, windowId: windowId}, function(tabs) {
     tabs.forEach(function(tab) {
@@ -117,12 +117,9 @@ function getNextAudibleTab(windowId, tabId, currTabAudible) {
       }
     }
   });
-
 };
 
 function focusTab(tab) {
-  // go to window
-  chrome.windows.update(tab.windowId, {focused: true}, function(window) {});
-  // set tab active
-  chrome.tabs.update(tab.id, {active: true}, function (newtab) {});
+  chrome.windows.update(tab.windowId, {focused: true}, function(window) {});  // go to window
+  chrome.tabs.update(tab.id, {active: true}, function (newtab) {});  // set tab active
 };
