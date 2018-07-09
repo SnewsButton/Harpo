@@ -9,7 +9,6 @@ let bkg = chrome.extension.getBackgroundPage();
 jumpAudibleTab.onclick = function(element) {
   // get current window
   var currWindowId;
-  var currTabId;
   chrome.windows.getCurrent({}, function (win) {
     currWindowId = win.id;
     bkg.console.log(currWindowId);
@@ -67,10 +66,6 @@ removeRedundentTabs.onclick = function(element) {
   });
 };
 
-function alertClosedTabs(numTabs) {
-  alert(numTabs + ' tab(s) have been closed.');
-};
-
 function completeJump(windowId) {
   bkg.console.log(windowId);
   chrome.tabs.query({active: true, windowId: windowId}, function(tabs) {
@@ -122,4 +117,8 @@ function getNextAudibleTab(windowId, tabId, currTabAudible) {
 function focusTab(tab) {
   chrome.windows.update(tab.windowId, {focused: true}, function(window) {});  // go to window
   chrome.tabs.update(tab.id, {active: true}, function (newtab) {});  // set tab active
+};
+
+function alertClosedTabs(numTabs) {
+  alert(numTabs + ' tab(s) have been closed.');
 };
