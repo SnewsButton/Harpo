@@ -3,6 +3,12 @@
   "version": "0.0.1",
   "description": "Tab Manager and Silencer!",
   "permissions": ["tabs", "declarativeContent"],
+  "icons": {
+    "16": "harp16.png",
+    "32": "harp32.png",
+    "48": "harp48.png",
+    "128": "harp128.png"
+  },
   "background": {
     "scripts": ["background.js"],
     "persistent": false
