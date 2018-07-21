@@ -1,7 +1,17 @@
+html {
+  height: 300px;
+}
+
+body {
+  padding: 0px;
+  height: 100px;
+}
+
 button {
   width: 180px;
   font-size: 1.1em;
 }
+
 
 .center {
   display: block;
