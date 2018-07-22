@@ -11,6 +11,7 @@ path to release
 - [x] split up windows w/ too many tabs
 - [ ] clean up console messages
 - [ ] publish to store
+
 Extra stuff
 - [ ] master serach
 
