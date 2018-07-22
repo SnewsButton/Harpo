@@ -137,7 +137,39 @@ function createNewWindow(tabUrls) {
   chrome.windows.create({url: tabUrls}, function(newWindow) {
     bkg.console.log(newWindow);
   });
-}
+};
+
+groupTabs.onclick = function(element) {
+  // get current window
+  bkg.console.log('What');
+  var currWindowId;
+  chrome.windows.getCurrent({}, function (win) {
+    currWindowId = win.id;
+    bkg.console.log(win);
+    sortTabs(currWindowId);
+  });
+
+};
+
+function sortTabs(windowId) {
+  // get all tabs
+  chrome.tabs.query({windowId: windowId}, function(tabs) {
+    // sort all tabs
+    tabs.sort(function(a, b){
+      if (a.url < b.url) { return -1; }
+      if (a.url > b.url) { return 1; }
+      return 0;
+    });
+    // get sortedIds
+    var sortedTabIds = [];
+    tabs.forEach(function(tab) {
+      sortedTabIds.push(tab.id);
+    });
+    bkg.console.log(sortedTabIds);
+    // change order
+    chrome.tabs.move(sortedTabIds, {index: 0});
+  });
+};
 
 removeRedundentTabs.onclick = function(element) {
   var redundentTabs = new Object();
