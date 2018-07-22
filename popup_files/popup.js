@@ -14,7 +14,6 @@ jumpAudibleTab.onclick = function(element) {
   var currWindowId;
   chrome.windows.getCurrent({}, function (win) {
     currWindowId = win.id;
-    bkg.console.log(currWindowId);
     completeJump(currWindowId);
   });
 };
@@ -99,7 +98,46 @@ function focusTab(tab) {
 /*
 Management
 */
+let splitWindow = document.getElementById('splitWindow');
+let groupTabs = document.getElementById('groupTabs');
 let removeRedundentTabs = document.getElementById('removeRedundentTabs');
+
+splitWindow.onclick = function(element) {
+  bkg.console.log('What');
+  var currWindowId;
+  let maxNumTabs = document.getElementById('maxNumTabs').value;
+  chrome.windows.getCurrent({}, function (win) {
+    currWindowId = win.id;
+    bkg.console.log(win);
+    finishSplit(currWindowId, maxNumTabs);
+  });
+};
+
+function finishSplit(windowId, maxNumTabs) {
+  chrome.tabs.query({windowId: windowId}, function(tabs) {
+    var counter = 0;
+    var tabUrls = [];
+    bkg.console.log(tabs);
+    tabs.forEach(function(tab, index) {
+      bkg.console.log(tab.id);
+      tabUrls.push(tab.url);
+      counter++;
+      if (counter == maxNumTabs || index == tabs.length - 1) {
+        createNewWindow(tabUrls);
+        counter = 0;
+        tabUrls = [];
+      }
+    });
+  });
+  chrome.windows.remove(windowId);
+};
+
+function createNewWindow(tabUrls) {
+  bkg.console.log('what');
+  chrome.windows.create({url: tabUrls}, function(newWindow) {
+    bkg.console.log(newWindow);
+  });
+}
 
 removeRedundentTabs.onclick = function(element) {
   var redundentTabs = new Object();
