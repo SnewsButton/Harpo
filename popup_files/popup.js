@@ -1,9 +1,12 @@
 'use strict';
 
+/*
+Audio
+*/
+
 let jumpAudibleTab = document.getElementById('jumpAudibleTab');
 let muteAudibleTabs = document.getElementById('muteAudibleTabs');
 let unmuteUnaudibleTabs = document.getElementById('unmuteUnaudibleTabs');
-let removeRedundentTabs = document.getElementById('removeRedundentTabs');
 let bkg = chrome.extension.getBackgroundPage();
 
 jumpAudibleTab.onclick = function(element) {
@@ -37,32 +40,6 @@ unmuteUnaudibleTabs.onclick = function(element) {
         console.log(updatedTab.muted);
       });
     });
-  });
-};
-
-removeRedundentTabs.onclick = function(element) {
-  var redundentTabs = new Object();
-  chrome.tabs.query({}, function(tabs) {
-    tabs.forEach(function(tab) {
-      let tabUrl = tab.url;
-      // Add new field to object
-      if (redundentTabs[tabUrl] == null) {
-        redundentTabs[tabUrl] = [];
-      }
-      else {
-        redundentTabs[tabUrl].push(tab.id);
-      }
-    });
-    // remove reduncent tabs
-    var numTabs = 0;
-    for (var redundentUrl in redundentTabs) {
-      if (redundentTabs.hasOwnProperty(redundentUrl)
-          && redundentTabs[redundentUrl].length > 0) {
-        chrome.tabs.remove(redundentTabs[redundentUrl], function(){});
-        numTabs += redundentTabs[redundentUrl].length;
-      }
-    }
-    alertClosedTabs(numTabs);
   });
 };
 
@@ -118,6 +95,38 @@ function focusTab(tab) {
   chrome.windows.update(tab.windowId, {focused: true}, function(window) {});  // go to window
   chrome.tabs.update(tab.id, {active: true}, function (newtab) {});  // set tab active
 };
+
+/*
+Management
+*/
+let removeRedundentTabs = document.getElementById('removeRedundentTabs');
+
+removeRedundentTabs.onclick = function(element) {
+  var redundentTabs = new Object();
+  chrome.tabs.query({}, function(tabs) {
+    tabs.forEach(function(tab) {
+      let tabUrl = tab.url;
+      // Add new field to object
+      if (redundentTabs[tabUrl] == null) {
+        redundentTabs[tabUrl] = [];
+      }
+      else {
+        redundentTabs[tabUrl].push(tab.id);
+      }
+    });
+    // remove reduncent tabs
+    var numTabs = 0;
+    for (var redundentUrl in redundentTabs) {
+      if (redundentTabs.hasOwnProperty(redundentUrl)
+          && redundentTabs[redundentUrl].length > 0) {
+        chrome.tabs.remove(redundentTabs[redundentUrl], function(){});
+        numTabs += redundentTabs[redundentUrl].length;
+      }
+    }
+    alertClosedTabs(numTabs);
+  });
+};
+
 
 function alertClosedTabs(numTabs) {
   alert(numTabs + ' tab(s) have been closed.');

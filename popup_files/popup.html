@@ -7,14 +7,16 @@
 </head>
 
 <body>
-  <!-- <h1>Harpo</h1>
-  <h2>Tab Manager and Silencer</h2> -->
   <img src="../images/harp48.png" class="center addPadding">
+  <h3>Manage Audio</h3>
   <button id='jumpAudibleTab'>Jump to next audible tab</button>
   <button id='muteAudibleTabs'>Mute all audible tabs</button>
   <button id='unmuteUnaudibleTabs'>Unmute all muted tabs</button>
+  <h3>Manage Tabs</h3>
+  <input  id='maxNumTabs' type="number" name="quantity" min="1" max="10" value="5"> ≥ tab(s) per window</input>
+  <button id='splitWindow'>Split current window</button>
+  <button id='groupTabs'>Group tabs</button>
   <button id='removeRedundentTabs'>Remove Redundent Tabs</button>
-  <a href="https://github.com/SnewsButton/Harpo" class="removeUnderline"> ❤️ SnewsButton</a>
-  <script src="./popup.js"></script>
 </body>
+<script src="./popup.js"></script>
 </html>
