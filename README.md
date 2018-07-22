@@ -3,12 +3,14 @@
 Harp image [source](https://openclipart.org/detail/182170/harp). 
 
 ## Todo
+path to release
 - [x] go to next audible tab
 - [ ] Add options page
 - [ ] Auto mute certain domains
-- [ ] org tabs by domain
-- [ ] split up windows w/ too many tabs
-- [ ] master serach
-- [ ] add options page
+- [x] org tabs by domain
+- [x] split up windows w/ too many tabs
 - [ ] clean up console messages
 - [ ] publish to store
+
+- [ ] master serach
+
