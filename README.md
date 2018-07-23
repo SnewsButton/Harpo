@@ -10,6 +10,7 @@ path to release
 - [x] org tabs by domain
 - [x] split up windows w/ too many tabs
 - [ ] clean up console messages
+- [ ] change manifest for versioning
 - [ ] publish to store
 
 Extra stuff
