@@ -7,6 +7,7 @@ path to release
 - [x] go to next audible tab
 - [ ] Add options page
 - [ ] Auto mute certain domains
+- [ ] search tabs (how to represent those tabs?)
 - [x] org tabs by domain
 - [x] split up windows w/ too many tabs
 - [ ] clean up console messages
